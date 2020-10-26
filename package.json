@@ -23,7 +23,7 @@
     "jest": "^26.4.2",
     "prettier": "^2.1.2",
     "vue-jest": "^3.0.4"
-  }
+  },
   "scripts": {
     "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate --fail-on-page-error"
   }
