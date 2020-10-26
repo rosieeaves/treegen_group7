@@ -8,7 +8,7 @@ export default {
   target: 'static',
   router: {
     base: '/treegen_group7/'
-  }
+  },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
