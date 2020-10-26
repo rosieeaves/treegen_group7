@@ -25,3 +25,6 @@
     "vue-jest": "^3.0.4"
   }
 }
+scripts : {
+    "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate --fail-on-page-error"
+}
