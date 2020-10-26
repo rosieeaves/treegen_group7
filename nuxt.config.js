@@ -4,7 +4,7 @@ const routerBase =
   process.env.DEPLOY_ENV === "GH_PAGES"
     ? {
         router: {
-          base: "/treefen_group7/"
+          base: "/treegen_group7/"
         }
       }
     : {};
