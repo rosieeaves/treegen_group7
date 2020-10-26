@@ -1,22 +1,14 @@
 import colors from 'vuetify/es5/util/colors'
 
-const routerBase =
-  process.env.DEPLOY_ENV === "GH_PAGES"
-    ? {
-        router: {
-          base: "/treegen_group7/"
-        }
-      }
-    : {};
-
-module.exports = routerBase;
-
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
+  router: {
+    base: '/treegen_group7/'
+  }
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
