@@ -4,10 +4,12 @@ const routerBase =
   process.env.DEPLOY_ENV === "GH_PAGES"
     ? {
         router: {
-          base: "/my-nuxt-app/"
+          base: "/treefen_group7/"
         }
       }
     : {};
+
+module.exports = routerBase;
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
