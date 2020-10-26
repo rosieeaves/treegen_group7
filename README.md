@@ -1,3 +1,6 @@
+![github pages](https://github.com/rosieeaves/treegen_group7/workflows/github%20pages/badge.svg)
+![Prettier linting](https://github.com/rosieeaves/treegen_group7/workflows/Prettier%20linting/badge.svg)
+![Node.js CI](https://github.com/rosieeaves/treegen_group7/workflows/Node.js%20CI/badge.svg)
 # Tree Generation Web App
 
 The Tree Generation Web App is an application written in Javascript which allows the user to specify and visualise fractal or biological patterns. The patterns are generated automatically using L-systems as described in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/#abop).
