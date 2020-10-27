@@ -1,4 +1,4 @@
-class Tree {
+export class Tree {
     /** Class to represent a tree which is generated using an L-System. Methods include adding rules to be used in the L-System generation, and running the 
         *  L-System using a derterministic or stochastic method to create a string which represents a tree.
         * 
@@ -43,14 +43,13 @@ class Tree {
             * :returns:        String which is produced as the reulst of n iterations of the deterministic L-System method on the axiom. 
             * 
             **/
-        var string = this.axiom;
-        for (var x=0; x<this.n; x++) {
-            console.log(x);
-            var newString = '';
-            for (var i=0; i<string.length; i++) {
-                var match = 0;
+        let string = this.axiom;
+        for (let x=0; x<this.n; x++) {
+            let newString = '';
+            for (let i=0; i<string.length; i++) {
+                let match = 0;
                 
-                for (var j=0; j<this.rules.length; j++) {
+                for (let j=0; j<this.rules.length; j++) {
 
                     if (this.rules[j].in == string[i]) {
                         match = 1;
