@@ -27,3 +27,6 @@ jobs:
     - run: npm rebuild
     - run: npm install
     - run: npm run build-documentation
+    - artifacts:
+      paths:
+        - docs
