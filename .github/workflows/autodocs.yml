@@ -26,4 +26,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm rebuild
     - run: npm install
-    - run: npm build-documentation
+    - run: npm run build-documentation
