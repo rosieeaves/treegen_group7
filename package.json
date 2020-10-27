@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "jest",
-    "build-documentation": "jsdoc . -d docs -R ./README.md"
+    "build-documentation": "jsdoc ./components -d docs -r"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -24,6 +24,6 @@
     "jest": "^26.4.2",
     "prettier": "^2.1.2",
     "vue-jest": "^3.0.4",
-    "jsdoc": "^3.5.5"
+    "jsdoc": "^3.6.6"
   }
 }
