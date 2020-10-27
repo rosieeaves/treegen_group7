@@ -1,4 +1,4 @@
-export class Tree {
+export default class Tree {
     /** Class to represent a tree which is generated using an L-System. Methods include adding rules to be used in the L-System generation, and running the 
         *  L-System using a derterministic or stochastic method to create a string which represents a tree.
         * 
