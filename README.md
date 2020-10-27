@@ -7,9 +7,7 @@ The Tree Generation Web App is an application written in Javascript which allows
 
 ## Accessing and using the Tree Generation Web App
 
-The web application can be accessed using this link.
-
-https://rosieeaves.github.io/treegen_group7/
+The web application can be accessed using this [link](https://rosieeaves.github.io/treegen_group7/).
 
 ## Contributing to the Tree Generation Web App
 
