@@ -1,5 +1,5 @@
 /**
- * Function which adds two integers together
+ * Function which adds two integers
  * @constructor
  * @param {int} a - The value of the first integer
  * @param {int} b - The value of the second integer
