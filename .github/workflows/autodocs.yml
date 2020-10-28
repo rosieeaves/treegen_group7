@@ -37,5 +37,5 @@ jobs:
         git commit -m "Add changes" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
-        github_token: ${{ "d5394d94582e55bbf0fca5a0395d36763de44d65" }}
+        github_token: d5394d94582e55bbf0fca5a0395d36763de44d65
         branch: ${{ github.ref }}
