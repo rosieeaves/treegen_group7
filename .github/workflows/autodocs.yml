@@ -19,7 +19,10 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2#
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -27,3 +30,13 @@ jobs:
     - run: npm rebuild
     - run: npm install
     - run: npm run build-documentation
+        - name: Commit files
+    - run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a
+    - name: Push changes
+      uses: rosieeaves/treegen_group7@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
