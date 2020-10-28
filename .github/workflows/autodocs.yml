@@ -36,7 +36,7 @@ jobs:
         git config --local user.name "AndrewKirby1"
         git commit -m "Add changes" -a
     - name: Push changes
-      uses: rosieeaves/treegen_group7@master
+      uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
