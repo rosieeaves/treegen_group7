@@ -4,8 +4,19 @@
  * @param {int} a - The value of the first integer
  * @param {int} b - The value of the second integer
  */
-function sum(a, b) {
-  return a + b
+export function sum(a,b) {
+  return Number(a) + Number(b);
+  // LOT OF CODE
 }
 
-module.exports = sum // Make the dummy method available for import from testing module
+
+export function NAME_OF_FUNCTION(modelType,angel,startingString,noOfIteration) {
+  console.log("the model type is: "+modelType);
+  console.log("the angel is: "+angel);
+  console.log("the starting string is: "+startingString);
+  console.log("the No. of iterations is: "+noOfIteration);
+
+}
+
+
+//module.exports = sum // Make the dummy method available for import from testing module
