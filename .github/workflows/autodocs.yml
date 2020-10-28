@@ -5,19 +5,20 @@ name: Auto-documentation
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-  - name: Checkout code
-    uses: actions/checkout@v2
-  - name: Build
-    uses: andstor/jsdoc-action@v1
-    with:
-      source_dir: ./components
-      recurse: true
-      output_dir: ./docs
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./componenets
+          output_dir: ./docs
+          template: minami
+          front_page: README.md
