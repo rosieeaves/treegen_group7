@@ -65,15 +65,23 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" @click="generateTree"> Continue </v-btn>
-          <v-btn id="simons-button" color="primary" nuxt to="/main">
-            Continue - Simon's Button
-          </v-btn>
+          <v-btn color="primary" @click="generateTree"> Draw Tree! </v-btn>
         </v-card-actions>
+
+        <div id="app">
+          <canvas id="myCanvas" width="500" height="500" />
+        </div>
+
       </v-card>
     </v-col>
   </v-row>
 </template>
+
+<style>
+#myCanvas {
+  border: 1px solid grey;
+}
+</style>
 
 methods:{ }
 
