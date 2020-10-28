@@ -1,7 +1,7 @@
 <template>
   <v-layout>
-    <v-flex class="text-left">
-      <div id="gui">
+    <v-flex class="text-left" v-bind:style="{ backgroundColor: 'white' }">
+      <div id="gui" style="color: grey">
         Model type:
         <select name="type" id="type">
           <option value="deterministic" selected>deterministic</option>
@@ -21,15 +21,17 @@
         <input type="text" name="axiom" id="axiom" value="F" />
         <br />
 
-          <v-btn large outlined v-on:click="draw">Draw Tree!</v-btn>
-        </div>
+        <v-btn large outlined style="color: black" v-on:click="draw"
+          >Draw Tree!</v-btn
+        >
+      </div>
 
-        <br>
+      <br />
 
-        <div id="app">
-          <h1>Tree</h1>
-          <canvas id="myCanvas" width="560" height="360" />
-        </div>
+      <div id="app">
+        <h1>Tree</h1>
+        <canvas id="myCanvas" width="640" height="480" />
+      </div>
     </v-flex>
   </v-layout>
 </template>
@@ -43,21 +45,20 @@
 <script>
 import buttonClick from './main.js'
 
-
-  export default {
-    data: {
-      canvas: null,
+export default {
+  data: {
+    canvas: null,
+  },
+  methods: {
+    draw: function (event) {
+      var c = document.getElementById('myCanvas')
+      this.canvas = c.getContext('2d')
+      buttonClick(this.canvas)
     },
-    methods: {
-      draw: function (event) {
-        var c = document.getElementById("myCanvas");
-        this.canvas = c.getContext('2d');
-        buttonClick(this.canvas);
-      },
-    },
-    mounted() {
-      var c = document.getElementById("myCanvas");
-      this.canvas = c.getContext('2d');
-    }
-  }
+  },
+  mounted() {
+    var c = document.getElementById('myCanvas')
+    this.canvas = c.getContext('2d')
+  },
+}
 </script>
