@@ -1,3 +1,5 @@
+/** *Function added to the front end, connecting via DummyFunction.js */
+
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
@@ -6,36 +8,10 @@
         <vuetify-logo />
       </div>
       <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
+        <v-card-title class="headline"> Website title </v-card-title>
         <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation </a
-            >.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord </a
-            >.
-          </p>
+          <p>Welcome to the tree generator website</p>
+
           <p>
             Find a bug? Report it on the github
             <a
@@ -47,47 +23,89 @@
               issue board </a
             >.
           </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3" />
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br />
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
+
+          <v-container fluid>
+            <v-select
+              id="modelType"
+              :items="modelType"
+              label="Select your model type"
+              dense
+              outlined
+              return-object
+              @input="onChange"
+            ></v-select>
+
+            <v-textarea
+              id="angle"
+              label="angle"
+              auto-grow
+              outlined
+              rows="1"
+              row-height="15"
+            ></v-textarea>
+
+            <v-textarea
+              id="axiom"
+              label="starting string"
+              auto-grow
+              outlined
+              rows="1"
+              row-height="15"
+            ></v-textarea>
+
+            <v-textarea
+              id="n"
+              label="No. of Iterations"
+              auto-grow
+              outlined
+              rows="1"
+              row-height="15"
+            ></v-textarea>
+          </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" nuxt to="/main"> Continue </v-btn>
+          <v-btn color="primary" @click="generateTree"> Continue </v-btn>
+          <v-btn id="simons-button" color="primary" nuxt to="/main">
+            Continue - Simon's Button
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
+methods:{ }
+
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import Tree from '~/components/tree'
 
 export default {
   components: {
     Logo,
     VuetifyLogo,
+  },
+  n1: '',
+  n2: 0,
+  n3: '',
+  n4: 0,
+  data: () => ({
+    modelType: ['deterministic', 'stochastic'],
+  }),
+  methods: {
+    generateTree() {
+      this.n2 = document.getElementById('angle').value
+      this.n3 = document.getElementById('axiom').value
+      this.n4 = document.getElementById('n').value
+      let tree = new Tree(this.n1, this.n2, this.n3, this.n4)
+      tree.addRule('X', 'XX')
+      let treeString = tree.generate()
+    },
+    onChange(value) {
+      this.n1 = value
+    },
   },
 }
 </script>
