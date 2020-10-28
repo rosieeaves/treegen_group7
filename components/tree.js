@@ -39,8 +39,7 @@ export default class Tree {
         out: [ruleOut],
       }
     } else {
-
-    /* If rules already exist, run through the existing rule in parameters to see if they match ruleIn. */
+      /* If rules already exist, run through the existing rule in parameters to see if they match ruleIn. */
       let match = false
       for (let i = 0; i < this.rules.length; i++) {
         /* If there is a match, add the ruleOut to the existing rule. */
