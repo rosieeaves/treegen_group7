@@ -30,14 +30,14 @@
 
         <v-container fluid>
 
-        <v-select id="val1" 
-          :items="model_type"
+        <v-select id="modelType" 
+          :items="modelType"
           label="Select your model type"
           dense
           outlined
         ></v-select>
 
-        <v-textarea id="val2"  
+        <v-textarea id="angle"  
           label="angle"
           auto-grow
           outlined
@@ -45,7 +45,7 @@
           row-height="15"
         ></v-textarea>
 
-        <v-textarea id="val3"
+        <v-textarea id="axiom"
           label="starting string"
           auto-grow
           outlined
@@ -53,7 +53,7 @@
           row-height="15"
         ></v-textarea>
 
-        <v-textarea id="val4" 
+        <v-textarea id="n" 
           label="No. of Iterations"
           auto-grow
           outlined
@@ -69,11 +69,11 @@
           <v-spacer />
           <v-btn
             color="primary"
-            @click="startQuiz"
+            @click="generateTree"
           >
             Continue
           </v-btn>
-          <v-btn id='simons-button' color="primary" nuxt to="/main"> Continue </v-btn>
+          <v-btn id='simons-button' color="primary" nuxt to="/main"> Continue - Simon's Button </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -89,6 +89,7 @@ methods:{
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 import * as MyFunctions from "~/components/dummyFunction"
+import Tree from '~/components/tree'
 
  
 export default {
@@ -96,24 +97,27 @@ export default {
     Logo,
     VuetifyLogo
   },
-  data: () => ({
-     items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-   }),
    n1: "",
    n2: 0,
    n3: "",
    n4: 0,
    data: () => ({
-      model_type: ['deterministic', 'stochastic']
+      modelType: ['deterministic', 'stochastic']
     }),
   methods:{
-    startQuiz(){
+    generateTree(){
       //this.n1 = "one";
-      this.n1 = document.getElementById("val1").value;
-      this.n2 = document.getElementById("val2").value;
-      this.n3 = document.getElementById("val3").value;
-      this.n4 = document.getElementById("val4").value;
-      MyFunctions.NAME_OF_FUNCTION(this.n1,this.n2,this.n3,this.n4);
+      this.n1 = document.getElementById("modelType").value;
+      this.n2 = document.getElementById("angle").value;
+      this.n3 = document.getElementById("axiom").value;
+      this.n4 = document.getElementById("n").value;
+      let tree = new Tree(this.n1,this.n2,this.n3,this.n4);
+      console.log(tree);
+      tree.addRule('X','XX');
+      console.log(tree.rules);
+      let treeString = tree.generate();
+      console.log(treeString);
+      /*MyFunctions.NAME_OF_FUNCTION(this.n1,this.n2,this.n3,this.n4);*/
       //console.log(MyFunctions.sum(this.n1,this.n2));
     }
   }
