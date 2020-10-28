@@ -33,7 +33,7 @@ jobs:
     - name: Commit files
       run: |
         git config --local user.email "andrew.kirby10@btinternet.com"
-        git config --local user.name "Andrew Kirby"
+        git config --local user.name "AndrewKirby1"
         git commit -m "Add changes" -a
     - name: Push changes
       uses: rosieeaves/treegen_group7@master
