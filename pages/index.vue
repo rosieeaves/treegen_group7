@@ -36,6 +36,7 @@
           dense
           outlined
           return-object
+          @input='onChange'
         ></v-select>
 
         <v-textarea id="angle"  
@@ -89,7 +90,6 @@ methods:{
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
-import * as MyFunctions from "~/components/dummyFunction"
 import Tree from '~/components/tree'
 
  
@@ -107,8 +107,6 @@ export default {
     }),
   methods:{
     generateTree(){
-      //this.n1 = "one";
-      this.n1 = document.getElementById("modelType").selectedModelType;
       this.n2 = document.getElementById("angle").value;
       this.n3 = document.getElementById("axiom").value;
       this.n4 = document.getElementById("n").value;
@@ -118,25 +116,12 @@ export default {
       console.log(tree.rules);
       let treeString = tree.generate();
       console.log(treeString);
-      /*MyFunctions.NAME_OF_FUNCTION(this.n1,this.n2,this.n3,this.n4);*/
-      //console.log(MyFunctions.sum(this.n1,this.n2));
+    },
+    onChange(value) {
+      this.n1 = value;
     }
   }
 }
 
 </script>
 
-<!--
-<script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
-export default {
-  components: {
-    Logo,
-    VuetifyLogo,
-  },
-}
-</script>
-
-<!-- some text -->
