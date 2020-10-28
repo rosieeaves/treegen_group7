@@ -24,6 +24,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm rebuild
-    - run: npm install
-    - run: npm run build-documentation
+    - name: Build
+      uses: andstor/jsdoc-action@v1
+      with:
+        source_dir: ./components
+        recurse: true
+        output_dir: ./docs
