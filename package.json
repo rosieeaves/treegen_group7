@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.5"
+    "nuxt": "^2.14.5",
+    "vue": "^2.6.12",
+    "vue-p5": "^0.8.3"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.2",
@@ -25,4 +27,3 @@
     "vue-jest": "^3.0.4"
   }
 }
-
