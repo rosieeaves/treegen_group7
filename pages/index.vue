@@ -73,6 +73,7 @@
           >
             Continue
           </v-btn>
+          <v-btn id='simons-button' color="primary" nuxt to="/main"> Continue </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
