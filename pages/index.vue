@@ -35,6 +35,7 @@
           label="Select your model type"
           dense
           outlined
+          return-object
         ></v-select>
 
         <v-textarea id="angle"  
@@ -101,13 +102,13 @@ export default {
    n2: 0,
    n3: "",
    n4: 0,
-   data: () => ({
-      modelType: ['deterministic', 'stochastic']
+   data: ()=> ({
+      modelType: ['deterministic', 'stochastic' ]
     }),
   methods:{
     generateTree(){
       //this.n1 = "one";
-      this.n1 = document.getElementById("modelType").value;
+      this.n1 = document.getElementById("modelType").selectedModelType;
       this.n2 = document.getElementById("angle").value;
       this.n3 = document.getElementById("axiom").value;
       this.n4 = document.getElementById("n").value;
