@@ -17,6 +17,10 @@
         <input type="text" name="iter" id="iter" value="5" />
         <br />
 
+        Number of iterations:
+        <input type="text" name="axiom" id="axiom" value="F" />
+        <br />
+
           <v-btn large outlined v-on:click="draw">Draw Tree!</v-btn>
         </div>
 
