@@ -32,8 +32,8 @@ jobs:
     - run: npm run build-documentation
     - name: Commit files
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "andrew.kirby10@btinternet.com"
+        git config --local user.name "Andrew Kirby"
         git commit -m "Add changes" -a
     - name: Push changes
       uses: rosieeaves/treegen_group7@master
