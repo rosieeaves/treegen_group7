@@ -1,8 +1,5 @@
-/**
-  *Function added to the front end, connecting via DummyFunction.js
-*/
- 
- 
+/** *Function added to the front end, connecting via DummyFunction.js */
+
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
@@ -11,117 +8,104 @@
         <vuetify-logo />
       </div>
       <v-card>
-        <v-card-title class="headline">
-          Website title
-        </v-card-title>
+        <v-card-title class="headline"> Website title </v-card-title>
         <v-card-text>
           <p>Welcome to the tree generator website</p>
 
           <p>
-            Find a bug? Report it on the github <a
+            Find a bug? Report it on the github
+            <a
               href="https://github.com/vuetifyjs/vuetify/issues"
               target="_blank"
               rel="noopener noreferrer"
               title="contribute"
             >
-              issue board
-            </a>.
+              issue board </a
+            >.
           </p>
 
-        <v-container fluid>
+          <v-container fluid>
+            <v-select
+              id="modelType"
+              :items="modelType"
+              label="Select your model type"
+              dense
+              outlined
+              return-object
+              @input="onChange"
+            ></v-select>
 
-        <v-select id="modelType" 
-          :items="modelType"
-          label="Select your model type"
-          dense
-          outlined
-          return-object
-          @input='onChange'
-        ></v-select>
+            <v-textarea
+              id="angle"
+              label="angle"
+              auto-grow
+              outlined
+              rows="1"
+              row-height="15"
+            ></v-textarea>
 
-        <v-textarea id="angle"  
-          label="angle"
-          auto-grow
-          outlined
-          rows="1"
-          row-height="15"
-        ></v-textarea>
+            <v-textarea
+              id="axiom"
+              label="starting string"
+              auto-grow
+              outlined
+              rows="1"
+              row-height="15"
+            ></v-textarea>
 
-        <v-textarea id="axiom"
-          label="starting string"
-          auto-grow
-          outlined
-          rows="1"
-          row-height="15"
-        ></v-textarea>
-
-        <v-textarea id="n" 
-          label="No. of Iterations"
-          auto-grow
-          outlined
-          rows="1"
-          row-height="15"
-        ></v-textarea>
-
-        </v-container>
-
-    
+            <v-textarea
+              id="n"
+              label="No. of Iterations"
+              auto-grow
+              outlined
+              rows="1"
+              row-height="15"
+            ></v-textarea>
+          </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn
-            color="primary"
-            @click="generateTree"
-          >
-            Continue
+          <v-btn color="primary" @click="generateTree"> Continue </v-btn>
+          <v-btn id="simons-button" color="primary" nuxt to="/main">
+            Continue - Simon's Button
           </v-btn>
-          <v-btn id='simons-button' color="primary" nuxt to="/main"> Continue - Simon's Button </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
-methods:{
-  
-}
-
+methods:{ }
 
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 import Tree from '~/components/tree'
 
- 
 export default {
   components: {
     Logo,
-    VuetifyLogo
+    VuetifyLogo,
   },
-   n1: "",
-   n2: 0,
-   n3: "",
-   n4: 0,
-   data: ()=> ({
-      modelType: ['deterministic', 'stochastic' ]
-    }),
-  methods:{
-    generateTree(){
-      this.n2 = document.getElementById("angle").value;
-      this.n3 = document.getElementById("axiom").value;
-      this.n4 = document.getElementById("n").value;
-      let tree = new Tree(this.n1,this.n2,this.n3,this.n4);
-      console.log(tree);
-      tree.addRule('X','XX');
-      console.log(tree.rules);
-      let treeString = tree.generate();
-      console.log(treeString);
+  n1: '',
+  n2: 0,
+  n3: '',
+  n4: 0,
+  data: () => ({
+    modelType: ['deterministic', 'stochastic'],
+  }),
+  methods: {
+    generateTree() {
+      this.n2 = document.getElementById('angle').value
+      this.n3 = document.getElementById('axiom').value
+      this.n4 = document.getElementById('n').value
+      let tree = new Tree(this.n1, this.n2, this.n3, this.n4)
+      tree.addRule('X', 'XX')
+      let treeString = tree.generate()
     },
     onChange(value) {
-      this.n1 = value;
-    }
-  }
+      this.n1 = value
+    },
+  },
 }
-
 </script>
-
