@@ -5,26 +5,28 @@ name: Auto-documentation
 
 on:
   push:
-    branches:
-    - master
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  build-deploy:
+  build:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
-    - uses: actions/checkout@master      
-      with:
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-    - name: Setup Node
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: '10.x'
-    - name: Create auto-documentation
-      run: |
-        npm rebuild
-        npm install
-        npm run build-documentation
+        node-version: ${{ matrix.node-version }}
+    - run: npm rebuild
+    - run: npm install
+    - run: npm run build-documentation
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
