@@ -65,15 +65,22 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" @click="generateTree"> Continue </v-btn>
-          <v-btn id="simons-button" color="primary" nuxt to="/main">
-            Continue - Simon's Button
-          </v-btn>
+          <v-btn color="primary" @click="generateTree"> Draw Tree! </v-btn>
         </v-card-actions>
+
+        <div id="app">
+          <canvas id="myCanvas" width="500" height="500" />
+        </div>
       </v-card>
     </v-col>
   </v-row>
 </template>
+
+<style>
+#myCanvas {
+  border: 1px solid grey;
+}
+</style>
 
 methods:{ }
 
@@ -81,6 +88,7 @@ methods:{ }
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 import Tree from '~/components/tree'
+import clickHandler from './index'
 
 export default {
   components: {
@@ -91,6 +99,7 @@ export default {
   n2: 0,
   n3: '',
   n4: 0,
+  canvas: null,
   data: () => ({
     modelType: ['deterministic', 'stochastic'],
   }),
@@ -99,13 +108,18 @@ export default {
       this.n2 = document.getElementById('angle').value
       this.n3 = document.getElementById('axiom').value
       this.n4 = document.getElementById('n').value
-      let tree = new Tree(this.n1, this.n2, this.n3, this.n4)
-      tree.addRule('X', 'XX')
-      let treeString = tree.generate()
+
+      var c = document.getElementById('myCanvas')
+      this.canvas = c.getContext('2d')
+      clickHandler(this.n1, this.n2, this.n3, this.n4, this.canvas)
     },
     onChange(value) {
       this.n1 = value
     },
+  },
+  mounted() {
+    var c = document.getElementById('myCanvas')
+    this.canvas = c.getContext('2d')
   },
 }
 </script>
