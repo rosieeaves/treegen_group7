@@ -1,6 +1,10 @@
+import { NAME_OF_FUNCTION } from "~/components/dummyFunction"
+import Tree from "~/components/tree"
+
 //import Tree from "../components/tree"
 
-export default function buttonClick(ctx) {
+export default function buttonClick(ctx,p1,p2,p3,p4,p5) {
+  let t = new Tree(p1,p2,p3,p4);
   /*let t = new Tree(
         document.getElementById("type").value, 
         document.getElementById("angle").value, 
@@ -13,15 +17,13 @@ export default function buttonClick(ctx) {
   ctx.strokeStyle = 'black'
   ctx.lineWidth = 1
   ctx.moveTo(0, 0)
-  ctx.lineTo(100, 100)
+  ctx.lineTo(200, 50)
+  ctx.lineTo(p4,p5)
   ctx.stroke()
   ctx.closePath()
 
   alert('The tree should now be drawn if the code were there!')
   alert(
-    document.getElementById('type').value +
-      document.getElementById('angle').value +
-      document.getElementById('axiom').value +
-      document.getElementById('iter').value
+    "Your data is: "+p1 +", "+ p2 +", "+p3 +", "+p4 +", "+p5
   )
 }

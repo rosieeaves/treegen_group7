@@ -1,32 +1,25 @@
+/** *Function added to the front end, connecting via DummyFunction.js */
+
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <div class="text-center"></div>
+      <div class="text-center">
+        <logo />
+      </div>
       <v-card>
-        <v-card-title class="headline"> Tree generator - group 7 </v-card-title>
+        <v-card-title class="headline"> Website title </v-card-title>
         <v-card-text>
-          <p>
-            Welcome to the tree generator website. This creates simple tree-like
-            shapes using L-systems as described in
-            <a
-              href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjh_PrGydnsAhVVtXEKHZ0LCl0QFjAAegQIAxAC&url=http%3A%2F%2Falgorithmicbotany.org%2Fpapers%2Fabop%2Fabop.pdf&usg=AOvVaw2r9WRagwONeb1NTGPS7xVT"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="book"
-            >
-              The Algorithmic Beauty of Plants </a
-            >.
-          </p>
+          <p>Welcome to the tree generator website</p>
 
           <p>
             Find a bug? Report it on the github
             <a
-              href="https://github.com/rosieeaves/treegen_group7"
+              href="https://github.com/vuetifyjs/vuetify/issues"
               target="_blank"
               rel="noopener noreferrer"
               title="contribute"
             >
-              issue board</a
+              issue board </a
             >.
           </p>
 
@@ -43,7 +36,16 @@
 
             <v-textarea
               id="angle"
-              label="Branching angle"
+              label="angle"
+              auto-grow
+              outlined
+              rows="1"
+              row-height="15"
+            ></v-textarea>
+
+            <v-textarea
+              id="rule"
+              label="Select Rule"
               auto-grow
               outlined
               rows="1"
@@ -52,7 +54,7 @@
 
             <v-textarea
               id="axiom"
-              label="Starting string"
+              label="starting string"
               auto-grow
               outlined
               rows="1"
@@ -71,12 +73,14 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" @click="generateTree"> Draw Tree! </v-btn>
+          <v-btn color="primary" @click="generateTree"> Generate </v-btn>
         </v-card-actions>
-
+        <v-layout>
         <div id="app">
-          <canvas id="myCanvas" width="500" height="500" />
+        <h1>Tree</h1>
+        <canvas v-bind:style="{ backgroundColor: 'white' }" id="myCanvas" width="640" height="480" />
         </div>
+        </v-layout>
       </v-card>
     </v-col>
   </v-row>
@@ -88,33 +92,46 @@
 }
 </style>
 
-methods:{ }
-
 <script>
+import Logo from '~/components/Logo.vue'
 import Tree from '~/components/tree'
-import clickHandler from './index'
+import buttonClick from './main.js'
+
 
 export default {
-  n1: '',
-  n2: 0,
-  n3: '',
-  n4: 0,
-  canvas: null,
+  components: {
+    Logo,
+  },
+  type: '',
+  angle: 0,
+  rule: '',
+  axiom: '',
+  n: 0,
   data: () => ({
     modelType: ['deterministic', 'stochastic'],
+    canvas: null,
   }),
   methods: {
-    generateTree() {
-      this.n2 = document.getElementById('angle').value
-      this.n3 = document.getElementById('axiom').value
-      this.n4 = document.getElementById('n').value
-
+    draw: function (event) {
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
-      clickHandler(this.n1, this.n2, this.n3, this.n4, this.canvas)
+      buttonClick(this.canvas)
+    },
+    generateTree() {
+      this.angle = document.getElementById('angle').value
+      this.rule = document.getElementById('rule').value
+      this.axiom = document.getElementById('axiom').value
+      this.n = document.getElementById('n').value
+      var c = document.getElementById('myCanvas')
+      this.canvas = c.getContext('2d')
+      buttonClick(this.canvas,this.type,this.angle,this.rule,this.axiom,this.n)
+
+      //let tree = new Tree(this.n1, this.n2, this.n3, this.n4)
+      //tree.addRule('X', 'XX')
+      //let treeString = tree.generate()
     },
     onChange(value) {
-      this.n1 = value
+      this.type = value
     },
   },
   mounted() {
