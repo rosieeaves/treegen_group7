@@ -39,7 +39,7 @@ export default function clickHandler(modeltype, angle, axiom, iter, ctx) {
     let tree = new Tree(modeltype, angle, axiom, iter)
     tree.addRule('X', 'F[-X][X]F[-X]+FX')
     tree.addRule('F', 'FF')
-    tree.generate(ctx)
+    tree.generate(ctx, iter)
 
     // Make little test drawing
     /*
