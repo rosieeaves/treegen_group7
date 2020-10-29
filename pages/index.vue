@@ -1,20 +1,21 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-      </div>
+      <div class="text-center"></div>
       <v-card>
         <v-card-title class="headline"> Tree generator - group 7 </v-card-title>
         <v-card-text>
-          <p>Welcome to the tree generator website. This creates
-            simple tree-like shapes using L-systems as described in 
+          <p>
+            Welcome to the tree generator website. This creates simple tree-like
+            shapes using L-systems as described in
             <a
               href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjh_PrGydnsAhVVtXEKHZ0LCl0QFjAAegQIAxAC&url=http%3A%2F%2Falgorithmicbotany.org%2Fpapers%2Fabop%2Fabop.pdf&usg=AOvVaw2r9WRagwONeb1NTGPS7xVT"
               target="_blank"
               rel="noopener noreferrer"
               title="book"
             >
-            The Algorithmic Beauty of Plants </a>.
+              The Algorithmic Beauty of Plants </a
+            >.
           </p>
 
           <p>
