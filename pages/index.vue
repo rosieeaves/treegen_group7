@@ -1,26 +1,32 @@
-/** *Function added to the front end, connecting via DummyFunction.js */
-
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
+      <div class="text-center"></div>
       <v-card>
-        <v-card-title class="headline"> Website title </v-card-title>
+        <v-card-title class="headline"> Tree generator - group 7 </v-card-title>
         <v-card-text>
-          <p>Welcome to the tree generator website</p>
+          <p>
+            Welcome to the tree generator website. This creates simple tree-like
+            shapes using L-systems as described in
+            <a
+              href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjh_PrGydnsAhVVtXEKHZ0LCl0QFjAAegQIAxAC&url=http%3A%2F%2Falgorithmicbotany.org%2Fpapers%2Fabop%2Fabop.pdf&usg=AOvVaw2r9WRagwONeb1NTGPS7xVT"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="book"
+            >
+              The Algorithmic Beauty of Plants </a
+            >.
+          </p>
 
           <p>
             Find a bug? Report it on the github
             <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
+              href="https://github.com/rosieeaves/treegen_group7"
               target="_blank"
               rel="noopener noreferrer"
               title="contribute"
             >
-              issue board </a
+              issue board</a
             >.
           </p>
 
@@ -37,7 +43,7 @@
 
             <v-textarea
               id="angle"
-              label="angle"
+              label="Branching angle"
               auto-grow
               outlined
               rows="1"
@@ -46,7 +52,7 @@
 
             <v-textarea
               id="axiom"
-              label="starting string"
+              label="Starting string"
               auto-grow
               outlined
               rows="1"
@@ -124,16 +130,10 @@
 methods:{ }
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
 import Tree from '~/components/tree'
 import clickHandler from './index'
 
 export default {
-  components: {
-    Logo,
-    VuetifyLogo,
-  },
   n1: '',
   n2: 0,
   n3: '',

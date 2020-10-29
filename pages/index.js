@@ -1,3 +1,5 @@
+import Tree from '~/components/tree'
+
 /* This will check for erros in the user input, and if there are none
 create a tree and give it the necessary information*/
 export default function clickHandler(modeltype, angle, axiom, iter, ctx) {
@@ -31,7 +33,16 @@ export default function clickHandler(modeltype, angle, axiom, iter, ctx) {
 
     /* Here we should call the appropriate function of tree.js */
 
+    ctx.beginPath()
+    ctx.clearRect(0, 0, 500, 500)
+    ctx.stroke()
+    let tree = new Tree(modeltype, angle, axiom, iter)
+    tree.addRule('X', 'F[-X][X]F[-X]+FX')
+    tree.addRule('F', 'FF')
+    tree.generate(ctx, iter)
+
     // Make little test drawing
+    /*
     ctx.beginPath()
     ctx.strokeStyle = 'white'
     ctx.lineWidth = 1
@@ -39,5 +50,6 @@ export default function clickHandler(modeltype, angle, axiom, iter, ctx) {
     ctx.lineTo(100, 100)
     ctx.stroke()
     ctx.closePath()
+    */
   }
 }
