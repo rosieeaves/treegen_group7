@@ -59,7 +59,7 @@ export default class Tree {
     }
   }
 
-  generate() {
+  generate(ctx, iter) {
     /** Generates a string which represents a tree using the deterministic L-System method based on the rules and axiom of the tree.
      *
      * :returns:        String which is produced as the result of n iterations of the deterministic L-System method on the axiom.
@@ -99,8 +99,59 @@ export default class Tree {
           newString += string[i]
         }
       }
+      let count = 0
+      setTimeout(() => {
+        this.drawTree(newString, 250, 490, ctx, iter)
+      }, count)
+      count += 1000
+      //this.drawTree(newString, 250, 490, ctx, iter);
       string = newString
     }
     return string
+  }
+
+  drawTree(string, sx, sy, ctx, iter) {
+    /** Draws the L-System represented by the string fed into it. Pos also fed in, also ctx is the canvas.
+     *
+     * :returns:        Drawing on canvas object.
+     *
+     **/
+    let x = sx
+    let y = sy
+    let ang = 90 // x and y represent the current place on the canvas you are drawing. ang is the direction you start by looking.
+    let xlist = [[x, y, ang]] // will store the places where you branch off so that once you finish drawing a branch you can go back to the point and draw another
+    let len = 100 / iter // length of steps
+    for (const char of string) {
+      console.log(ang)
+      if (char === 'F') {
+        ;[x, y] = this.drawForward(x, y, ang, len, ctx)
+      } else if (char === '[') {
+        xlist.push([x, y, ang])
+      } else if (char === ']') {
+        ;[x, y, ang] = xlist[xlist.length - 1]
+        xlist.pop()
+      } else if (char === '-') {
+        ang = ang - this.delta
+      } else if (char === '+') {
+        ang = ang + this.delta
+      } else {
+      }
+    }
+  }
+
+  drawForward(x, y, ang, length, ctx) {
+    /** Draws a straight line from x, y at angle ang to the vertical and of length length
+     *
+     * :returns:        Drawing of straight line canvas object.
+     *
+     **/
+    ctx.moveTo(x, y)
+    let theta = (-Math.PI / 180) * ang
+    let nx = x + length * Math.cos(theta)
+    let ny = y + length * Math.sin(theta)
+    ctx.lineTo(nx, ny)
+    ctx.strokeStyle = 'white'
+    ctx.stroke()
+    return [nx, ny]
   }
 }
