@@ -61,6 +61,39 @@
               rows="1"
               row-height="15"
             ></v-textarea>
+
+            <span>F = </span>
+
+            <v-textarea
+              id="rule1"
+              label="Rule 1"
+              auto-grow
+              outlined
+              rows="1"
+              row-height="15"
+              cols="49"
+              class="inline-div"
+              value="FF"
+            ></v-textarea>
+
+            <span>X = </span>
+
+            <v-textarea
+              id="rule2"
+              label="Rule 2"
+              auto-grow
+              outlined
+              rows="1"
+              row-height="15"
+              cols="49"
+              class="inline-div"
+              value="F[-X][X]F[-X]+FX"
+            ></v-textarea>
+
+            <button
+              id="AddRuleButton"
+              visibility="Hidden"
+            >Add rule</button>
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -79,6 +112,9 @@
 <style>
 #myCanvas {
   border: 1px solid grey;
+}
+.inline-div {
+    display:inline-block;
 }
 </style>
 
@@ -115,6 +151,11 @@ export default {
     },
     onChange(value) {
       this.n1 = value
+      if (value === 'stochastic' ){
+        document.getElementById('AddRuleButton').style.visibility = 'visible'
+      } else if (value === 'deterministic'){
+        document.getElementById('AddRuleButton').style.visibility = 'hidden'
+      }
     },
   },
   mounted() {
