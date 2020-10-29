@@ -62,7 +62,7 @@
               row-height="15"
             ></v-textarea>
 
-            <span>F = </span>
+            <span class='ruleInput'>F = </span>
 
             <v-textarea
               id="rule1"
@@ -72,11 +72,10 @@
               rows="1"
               row-height="15"
               cols="49"
-              class="inline-div"
               value="FF"
             ></v-textarea>
 
-            <span>X = </span>
+            <span class='ruleInput'>X = </span>
 
             <v-textarea
               id="rule2"
@@ -86,13 +85,17 @@
               rows="1"
               row-height="15"
               cols="49"
-              class="inline-div"
+              class="ruleOutput"
               value="F[-X][X]F[-X]+FX"
             ></v-textarea>
 
+            <div id='stochasticRules'>
+            </div>
+
             <button
               id="AddRuleButton"
-              visibility="Hidden"
+              style = 'visibility: hidden;'
+              @click="addRuleRow"
             >Add rule</button>
           </v-container>
         </v-card-text>
@@ -157,10 +160,36 @@ export default {
         document.getElementById('AddRuleButton').style.visibility = 'hidden'
       }
     },
+  addRuleRow() {
+
+    let ruleNum = document.getElementById('stochasticRules').children.length+1/2
+
+    let ruleInput = document.createElement('select');
+
+    let F = document.createElement('option');
+    F.value = 'F';
+    F.innerHTML = 'F =';
+    F.style = 'color: white;'
+    ruleInput.appendChild(F);
+
+    let X = document.createElement('option');
+    X.value = 'X =';
+    X.innerHTML = 'X =';
+    X.style = 'color: white;'
+    ruleInput.appendChild(X);
+
+    ruleInput.id = 'rule' + ruleNum;
+    document.getElementById('stochasticRules').appendChild(ruleInput)
+
+    let ruleOutput = document.createElement('input');
+    ruleOutput.id = 'rule' + ruleNum;
+    document.getElementById('stochasticRules').appendChild(ruleOutput);
+
   },
   mounted() {
     var c = document.getElementById('myCanvas')
     this.canvas = c.getContext('2d')
   },
+}
 }
 </script>
