@@ -3,9 +3,9 @@ import Tree from "~/components/tree"
 
 //import Tree from "../components/tree"
 
-export default function buttonClick(ctx,p1,p2,p3,p4,p5) {
-  let t = new Tree(p1,p2,p3,p4);
-  /*let t = new Tree(
+export default function buttonClick(ctx,model,angle,rule,axiom,n) {
+  /*let t = new Tree(p1,p2,p3,p4);
+  let t = new Tree(
         document.getElementById("type").value, 
         document.getElementById("angle").value, 
         document.getElementById("axiom").value, 
@@ -23,7 +23,9 @@ export default function buttonClick(ctx,p1,p2,p3,p4,p5) {
   ctx.closePath()
 
   alert('The tree should now be drawn if the code were there!')
-  alert(
-    "Your data is: "+p1 +", "+ p2 +", "+p3 +", "+p4 +", "+p5
-  )
+  
+}
+
+export function algo (string,n) {
+  alert("this is your info "+string+", "+n )
 }

@@ -93,9 +93,10 @@
 </style>
 
 <script>
-import Logo from '~/components/Logo.vue'
+//import Logo from '~/components/Logo.vue'
 import Tree from '~/components/tree'
 import buttonClick from './main.js'
+import algo from './main.js'
 
 
 export default {
@@ -140,3 +141,9 @@ export default {
   },
 }
 </script>
+
+
+
+
+
+
