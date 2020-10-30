@@ -27,17 +27,6 @@ export default function clickHandler(
 
   // Proceed if all is good!
   if (valid) {
-    alert(
-      'Generating tree with ' +
-        modeltype +
-        ' ' +
-        angle +
-        ' ' +
-        axiom +
-        ' ' +
-        iter
-    )
-
     /* Here we should call the appropriate function of tree.js */
 
     ctx.beginPath()
