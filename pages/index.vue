@@ -106,6 +106,21 @@
           >
             Add rule
           </v-btn>
+
+        <v-btn
+            id="ex1"
+            @click="changeVars1"
+          >
+            Example Curve 1
+          </v-btn>
+        
+        <v-btn
+            id="ex2"
+            @click="changeVars2"
+          >
+            Example Curve 2
+          </v-btn>
+
         </v-container>
       </v-card-text>
       <v-card-actions>
@@ -211,6 +226,22 @@ export default {
       ruleOutput.className = 'inline-div'
       ruleOutput.style = 'color:white; font-size:16; border: 1px solid grey'
       document.getElementById('stochasticRules').appendChild(ruleOutput)
+    },
+    changeVars1() {
+      this.onChange('deterministic') 
+      document.getElementById("angle").innerHTML = 90
+      document.getElementById("axiom").value = "F-F-F-F-"
+      document.getElementById("n").value = 3
+      document.getElementById("rule1").value = "F-F+FF-F-F+F"
+      this.generateTree()
+    },
+    changeVars2() {
+      this.onChange('deterministic') 
+      document.getElementById("angle").innerHTML = 60
+      document.getElementById("axiom").value = "F+F+F+F+F+F"
+      document.getElementById("n").value = 3
+      document.getElementById("rule1").value = "F+F--F+F"
+      this.generateTree()
     },
     mounted() {
       var c = document.getElementById('myCanvas')
