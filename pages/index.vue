@@ -68,7 +68,7 @@
               row-height="15"
             ></v-textarea>
 
-            <span>F = </span>
+            <span class="ruleInput">F = </span>
 
             <v-textarea
               id="rule1"
@@ -78,11 +78,10 @@
               rows="1"
               row-height="15"
               cols="49"
-              class="inline-div"
               value="FF"
             ></v-textarea>
 
-            <span>X = </span>
+            <span class="ruleInput">X = </span>
 
             <v-textarea
               id="rule2"
@@ -92,11 +91,19 @@
               rows="1"
               row-height="15"
               cols="49"
-              class="inline-div"
+              class="ruleOutput"
               value="F[-X][X]F[-X]+FX"
             ></v-textarea>
 
-            <button id="AddRuleButton" visibility="Hidden">Add rule</button>
+            <div id="stochasticRules"></div>
+
+            <button
+              id="AddRuleButton"
+              style="visibility: hidden"
+              @click="addRuleRow"
+            >
+              Add rule
+            </button>
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -144,7 +151,29 @@ export default {
 
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
-      clickHandler(this.n1, this.n2, this.n3, this.n4, this.canvas)
+
+      this.rules = []
+      this.rules[0] = ['F', document.getElementById('rule1').value]
+      this.rules[1] = ['X', document.getElementById('rule2').value]
+
+      let numStochRules =
+        document.getElementById('stochasticRules').children.length / 2
+      console.log('stoch rules = ', numStochRules)
+      for (let i = 0; i < numStochRules; i++) {
+        console.log(i)
+        if (
+          document.getElementById('stochasticRules').children[2 * i + 1] != ''
+        ) {
+          this.rules[this.rules.length] = [
+            document.getElementById('stochasticRules').children[2 * i].value,
+            document.getElementById('stochasticRules').children[2 * i + 1]
+              .value,
+          ]
+        }
+      }
+      console.log(this.rules)
+
+      clickHandler(this.n1, this.n2, this.n3, this.n4, this.canvas, this.rules)
     },
     onChange(value) {
       this.n1 = value
@@ -154,10 +183,36 @@ export default {
         document.getElementById('AddRuleButton').style.visibility = 'hidden'
       }
     },
-  },
-  mounted() {
-    var c = document.getElementById('myCanvas')
-    this.canvas = c.getContext('2d')
+    addRuleRow() {
+      let ruleNum =
+        document.getElementById('stochasticRules').children.length + 1 / 2
+
+      let ruleInput = document.createElement('select')
+
+      let F = document.createElement('option')
+      F.value = 'F'
+      F.innerHTML = 'F ='
+      F.style = 'color: white;'
+      ruleInput.appendChild(F)
+
+      let X = document.createElement('option')
+      X.value = 'X ='
+      X.innerHTML = 'X ='
+      X.style = 'color: white;'
+      ruleInput.appendChild(X)
+
+      ruleInput.id = 'rule' + ruleNum
+      document.getElementById('stochasticRules').appendChild(ruleInput)
+
+      let ruleOutput = document.createElement('input')
+      ruleOutput.id = 'rule' + ruleNum
+      ruleOutput.className = 'inline-div'
+      document.getElementById('stochasticRules').appendChild(ruleOutput)
+    },
+    mounted() {
+      var c = document.getElementById('myCanvas')
+      this.canvas = c.getContext('2d')
+    },
   },
 }
 </script>

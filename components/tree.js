@@ -101,6 +101,7 @@ export default class Tree {
       }
       string = newString
     }
+
     this.drawTree(string, ctx, iter)
     return string
   }
@@ -113,10 +114,12 @@ export default class Tree {
      **/
     let x = 0
     let y = 0
+
     let xmax = 0
     let xmin = 0
     let ymax = 0
     let ymin = 0
+
     let ang = 90 // x and y represent the current place on the canvas you are drawing. ang is the direction you start by looking.
     let xlist = [[x, y, ang]] // will store the places where you branch off so that once you finish drawing a branch you can go back to the point and draw another
     let len = 1 // length of steps
@@ -141,6 +144,7 @@ export default class Tree {
       } else {
       }
     }
+
     return [Math.abs(xmax - xmin), Math.abs(ymax - ymin), xmin, ymax]
   }
 
@@ -150,6 +154,7 @@ export default class Tree {
      * :returns:        Drawing on canvas object.
      *
      **/
+
     let size = this.getSize(string)
     let len = 400 / Math.max(size[0], size[1]) // length of steps
     console.log(size)
