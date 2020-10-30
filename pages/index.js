@@ -33,6 +33,7 @@ export default function clickHandler(
     ctx.clearRect(0, 0, 500, 500)
     ctx.stroke()
     let tree = new Tree(modeltype, angle, axiom, iter)
+    console.log(tree);
 
     for (let i = 0; i < rules.length; i++) {
       tree.addRule(rules[i][0], rules[i][1])

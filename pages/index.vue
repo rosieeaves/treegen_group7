@@ -32,6 +32,7 @@
 
         <v-container fluid>
           <v-select
+            v-model='model'
             id="modelType"
             :items="modelType"
             label="Select your model type"
@@ -43,29 +44,35 @@
 
           <v-textarea
             id="angle"
+            v-model='angle'
             label="Branching angle"
             auto-grow
             outlined
             rows="1"
             row-height="15"
+            :key="componentKey"
           ></v-textarea>
 
           <v-textarea
             id="axiom"
+            v-model='axiom'
             label="Starting string"
             auto-grow
             outlined
             rows="1"
             row-height="15"
+            :key="componentKey"
           ></v-textarea>
 
           <v-textarea
             id="n"
+            v-model='n'
             label="No. of Iterations"
             auto-grow
             outlined
             rows="1"
             row-height="15"
+            :key="componentKey"
           ></v-textarea>
 
           <span class="ruleInput">F = </span>
@@ -77,8 +84,9 @@
             outlined
             rows="1"
             row-height="15"
+            value='FF'
+            :key="componentKey"
             cols="49"
-            value="FF"
           ></v-textarea>
 
           <span class="ruleInput">X = </span>
@@ -92,7 +100,8 @@
             row-height="15"
             cols="49"
             class="ruleOutput"
-            value="F[-X][X]F[-X]+FX"
+            value='F[-X][X]F[-X]+FX'
+            :key="componentKey"
           ></v-textarea>
 
           <div id="stochasticRules"></div>
@@ -152,19 +161,22 @@ import Tree from '~/components/tree'
 import clickHandler from './index'
 
 export default {
-  n1: '',
-  n2: 0,
-  n3: '',
-  n4: 0,
+  model: '',
+  angle: 0,
+  axiom: '',
+  n: 0,
+  rule1: 'FF',
+  rule2: 'F[-X][X]F[-X]+FX',
   canvas: null,
   data: () => ({
     modelType: ['deterministic', 'stochastic'],
+    componentKey: 0,
   }),
   methods: {
     generateTree() {
-      this.n2 = document.getElementById('angle').value
-      this.n3 = document.getElementById('axiom').value
-      this.n4 = document.getElementById('n').value
+      //this.n2 = document.getElementById('angle').value
+      //this.n3 = document.getElementById('axiom').value
+      //this.n4 = document.getElementById('n').value
 
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
@@ -191,14 +203,14 @@ export default {
       }
       console.log(this.rules)
 
-      clickHandler(this.n1, this.n2, this.n3, this.n4, this.canvas, this.rules)
+      clickHandler(this.model, this.angle, this.axiom, this.n, this.canvas, this.rules)
     },
     onChange(value) {
-      this.n1 = value
       if (value === 'stochastic') {
         document.getElementById('AddRuleButton').style.visibility = 'visible'
       } else if (value === 'deterministic') {
         document.getElementById('AddRuleButton').style.visibility = 'hidden'
+        document.getElementById('stochasticRules').innerHTML = ''
       }
     },
     addRuleRow() {
@@ -228,24 +240,29 @@ export default {
       document.getElementById('stochasticRules').appendChild(ruleOutput)
     },
     changeVars1() {
-      this.onChange('deterministic') 
-      document.getElementById("angle").innerHTML = 90
-      document.getElementById("axiom").value = "F-F-F-F-"
-      document.getElementById("n").value = 3
-      document.getElementById("rule1").value = "F-F+FF-F-F+F"
+      this.model = 'deterministic'
+      this.angle = 90
+      this.axiom = "F-F-F-F-"
+      this.n = 3
+      this.rule1 = "F-F+FF-F-F+F"
+      this.forceRerender()
       this.generateTree()
     },
     changeVars2() {
-      this.onChange('deterministic') 
-      document.getElementById("angle").innerHTML = 60
-      document.getElementById("axiom").value = "F+F+F+F+F+F"
-      document.getElementById("n").value = 3
-      document.getElementById("rule1").value = "F+F--F+F"
+      this.model = 'deterministic'
+      this.angle = 60
+      this.axiom = "F+F+F+F+F+F"
+      this.n = 3
+      this.rule1 = "F+F--F+F"
+      this.forceRerender()
       this.generateTree()
     },
     mounted() {
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
+    },
+    forceRerender() {
+      this.componentKey += 1;
     },
   },
 }
