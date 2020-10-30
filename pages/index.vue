@@ -150,7 +150,23 @@ export default {
 
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
-      clickHandler(this.n1, this.n2, this.n3, this.n4, this.canvas)
+
+      this.rules = [];
+      this.rules[0]=['F',document.getElementById('rule1').value];
+      this.rules[1] = ['X',document.getElementById('rule2').value];
+
+      let numStochRules = (document.getElementById('stochasticRules').children.length/2)
+      console.log('stoch rules = ',numStochRules);
+      for (let i=0; i < numStochRules; i++) {
+        console.log(i);
+        if (document.getElementById('stochasticRules').children[2*i+1] != '') {
+          this.rules[this.rules.length] = [document.getElementById('stochasticRules').children[2*i].value, document.getElementById('stochasticRules').children[2*i+1].value]
+        }
+        
+      }
+      console.log(this.rules);
+
+      clickHandler(this.n1, this.n2, this.n3, this.n4, this.canvas, this.rules)
     },
     onChange(value) {
       this.n1 = value
@@ -183,6 +199,7 @@ export default {
 
     let ruleOutput = document.createElement('input');
     ruleOutput.id = 'rule' + ruleNum;
+    ruleOutput.className = 'inline-div';
     document.getElementById('stochasticRules').appendChild(ruleOutput);
 
   },
