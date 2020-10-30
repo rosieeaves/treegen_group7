@@ -116,7 +116,7 @@
 
           <v-btn id="exm2" @click="changeVars2"> MC Escher </v-btn>
 
-          <v-btn id="exm3" @click="changeVars3"> Mufasa </v-btn>
+          <v-btn id="exm4" @click="changeVars4"> Mufasa </v-btn>
         </v-container>
       </v-card-text>
       <v-card-actions>
@@ -256,7 +256,7 @@ export default {
       this.generateTree()
       this.forceRerender()
     },
-    changeVars3() {
+    changeVars4() {
       this.model = 'deterministic'
       this.angle = 45
       this.axiom = 'F+F+F'
