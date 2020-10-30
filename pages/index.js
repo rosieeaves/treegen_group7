@@ -33,15 +33,16 @@ export default function clickHandler(modeltype, angle, axiom, iter, ctx, rules) 
 
     /* Here we should call the appropriate function of tree.js */
 
-    console.log(rules);
     ctx.beginPath()
     ctx.clearRect(0, 0, 500, 500)
     ctx.stroke()
     let tree = new Tree(modeltype, angle, axiom, iter)
 
+
     for (let i=0; i<rules.length; i++) {
       tree.addRule(rules[i][0],rules[i][1])
     }
+
     tree.generate(ctx, iter)
 
     // Make little test drawing

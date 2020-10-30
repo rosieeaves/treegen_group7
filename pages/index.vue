@@ -95,6 +95,7 @@
               value="F[-X][X]F[-X]+FX"
             ></v-textarea>
 
+
             <div id='stochasticRules'>
             </div>
 
@@ -103,6 +104,7 @@
               style = 'visibility: hidden;'
               @click="addRuleRow"
             >Add rule</button>
+
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -123,7 +125,7 @@
   border: 1px solid grey;
 }
 .inline-div {
-    display:inline-block;
+  display: inline-block;
 }
 </style>
 
@@ -170,9 +172,9 @@ export default {
     },
     onChange(value) {
       this.n1 = value
-      if (value === 'stochastic' ){
+      if (value === 'stochastic') {
         document.getElementById('AddRuleButton').style.visibility = 'visible'
-      } else if (value === 'deterministic'){
+      } else if (value === 'deterministic') {
         document.getElementById('AddRuleButton').style.visibility = 'hidden'
       }
     },
