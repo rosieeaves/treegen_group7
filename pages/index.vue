@@ -164,7 +164,7 @@ export default {
       for (let i = 0; i < numStochRules; i++) {
         console.log(i)
         if (
-          document.getElementById('stochasticRules').children[2 * i + 1] != ''
+          document.getElementById('stochasticRules').children[2 * i + 1].value != ''
         ) {
           this.rules[this.rules.length] = [
             document.getElementById('stochasticRules').children[2 * i].value,
@@ -199,7 +199,7 @@ export default {
       ruleInput.appendChild(F)
 
       let X = document.createElement('option')
-      X.value = 'X ='
+      X.value = 'X'
       X.innerHTML = 'X ='
       X.style = 'color:white; font-size:12';
       ruleInput.appendChild(X)
