@@ -32,6 +32,7 @@
 
         <v-container fluid>
           <v-select
+            v-model="model"
             id="modelType"
             :items="modelType"
             label="Select your model type"
@@ -43,47 +44,55 @@
 
           <v-textarea
             id="angle"
+            v-model="angle"
             label="Branching angle"
             auto-grow
             outlined
             rows="1"
             row-height="15"
+            :key="componentKey"
           ></v-textarea>
 
           <v-textarea
             id="axiom"
+            v-model="axiom"
             label="Starting string"
             auto-grow
             outlined
             rows="1"
             row-height="15"
+            :key="componentKey"
           ></v-textarea>
 
           <v-textarea
             id="n"
+            v-model="n"
             label="No. of Iterations"
             auto-grow
             outlined
             rows="1"
             row-height="15"
+            :key="componentKey"
           ></v-textarea>
 
           <span class="ruleInput">F = </span>
 
           <v-textarea
+            v-model="rule1"
             id="rule1"
             label="Rule 1"
             auto-grow
             outlined
             rows="1"
             row-height="15"
+            :key="componentKey"
             cols="49"
-            value="FF"
           ></v-textarea>
 
           <span class="ruleInput">X = </span>
 
           <v-textarea
+            v-model="rule2"
             id="rule2"
             label="Rule 2"
             auto-grow
@@ -92,20 +101,20 @@
             row-height="15"
             cols="49"
             class="ruleOutput"
-            value="F[-X][X]F[-X]+FX"
+            :key="componentKey"
           ></v-textarea>
 
           <div id="stochasticRules"></div>
           <br />
           <v-spacer />
 
-          <v-btn
-            id="AddRuleButton"
-            style="visibility: hidden"
-            @click="addRuleRow"
-          >
+          <v-btn id="AddRuleButton" v-if="!isHidden" @click="addRuleRow">
             Add rule
           </v-btn>
+
+          <v-btn id="ex1" @click="changeVars1"> Example Curve 1 </v-btn>
+
+          <v-btn id="ex2" @click="changeVars2"> Example Curve 2 </v-btn>
         </v-container>
       </v-card-text>
       <v-card-actions>
@@ -137,26 +146,26 @@ import Tree from '~/components/tree'
 import clickHandler from './index'
 
 export default {
-  n1: '',
-  n2: 0,
-  n3: '',
-  n4: 0,
   canvas: null,
   data: () => ({
     modelType: ['deterministic', 'stochastic'],
+    componentKey: 0,
+    model: '',
+    angle: '',
+    axiom: '',
+    n: '',
+    rule1: 'FF',
+    rule2: 'F[-X][X]F[-X]+FX',
+    isHidden: true,
   }),
   methods: {
     generateTree() {
-      this.n2 = document.getElementById('angle').value
-      this.n3 = document.getElementById('axiom').value
-      this.n4 = document.getElementById('n').value
-
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
 
       this.rules = []
-      this.rules[0] = ['F', document.getElementById('rule1').value]
-      this.rules[1] = ['X', document.getElementById('rule2').value]
+      this.rules[0] = ['F', this.rule1]
+      this.rules[1] = ['X', this.rule2]
 
       let numStochRules =
         document.getElementById('stochasticRules').children.length / 2
@@ -176,14 +185,23 @@ export default {
       }
       console.log(this.rules)
 
-      clickHandler(this.n1, this.n2, this.n3, this.n4, this.canvas, this.rules)
+      clickHandler(
+        this.model,
+        this.angle,
+        this.axiom,
+        this.n,
+        this.canvas,
+        this.rules
+      )
     },
     onChange(value) {
-      this.n1 = value
-      if (value === 'stochastic') {
-        document.getElementById('AddRuleButton').style.visibility = 'visible'
-      } else if (value === 'deterministic') {
-        document.getElementById('AddRuleButton').style.visibility = 'hidden'
+      console.log(this.model)
+      if (this.model === 'stochastic') {
+        console.log('inside if')
+        this.isHidden = false
+      } else if (this.model === 'deterministic') {
+        this.isHidden = true
+        document.getElementById('stochasticRules').innerHTML = ''
       }
     },
     addRuleRow() {
@@ -212,9 +230,36 @@ export default {
       ruleOutput.style = 'color:white; font-size:16; border: 1px solid grey'
       document.getElementById('stochasticRules').appendChild(ruleOutput)
     },
+    changeVars1() {
+      this.model = 'deterministic'
+      this.angle = 90
+      this.axiom = 'F-F-F-F-'
+      this.n = 3
+      this.rule1 = 'F-F+FF-F-F+F'
+      this.rule2 = ''
+      this.isHidden = true
+      document.getElementById('stochasticRules').innerHTML = ''
+      this.generateTree()
+      this.forceRerender()
+    },
+    changeVars2() {
+      this.model = 'deterministic'
+      this.angle = 60
+      this.axiom = 'F+F+F+F+F+F'
+      this.n = 3
+      this.rule1 = 'F+F--F+F'
+      this.rule2 = ''
+      this.isHidden = true
+      document.getElementById('stochasticRules').innerHTML = ''
+      this.generateTree()
+      this.forceRerender()
+    },
     mounted() {
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
+    },
+    forceRerender() {
+      this.componentKey += 1
     },
   },
 }
