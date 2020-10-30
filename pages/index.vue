@@ -117,6 +117,7 @@
           <v-btn id="exm2" @click="changeVars2"> MC Escher </v-btn>
 
           <v-btn id="exm4" @click="changeVars4"> Mufasa </v-btn>
+
         </v-container>
       </v-card-text>
       <v-card-actions>
