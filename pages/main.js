@@ -29,3 +29,17 @@ export default function buttonClick(ctx,model,angle,rule,axiom,n) {
 export function algo (string,n) {
   alert("this is your info "+string+", "+n )
 }
+
+
+function applyRule (startingS,targetS,rule,n) {
+  var out = "";
+  for (let i in startingS) {
+    if (startingS[i] == targetS) {
+      out += rule;
+    } else {
+      out += startingS[i];
+    }
+  }
+  if (n == 0) {return out;}
+  else {return applyRule(out,targetS,rule,n-1);}
+}

@@ -119,6 +119,7 @@ export default {
       buttonClick(this.canvas)
     },
     generateTree() {
+      algo("string",5)
       this.angle = document.getElementById('angle').value
       this.rule = document.getElementById('rule').value
       this.axiom = document.getElementById('axiom').value
