@@ -112,11 +112,11 @@
             Add rule
           </v-btn>
 
-          <v-btn id="ex1" @click="changeVars1"> Kosh-Style Snowflake </v-btn>
+          <v-btn id="exm1" @click="changeVars1"> Kosh-Style Snowflake </v-btn>
 
-          <v-btn id="ex2" @click="changeVars2"> MC Escher </v-btn>
+          <v-btn id="exm2" @click="changeVars2"> MC Escher </v-btn>
 
-          <v-btn id="ex3" @click="changeVars3"> Mufasa </v-btn>
+          <v-btn id="exm3" @click="changeVars3"> Mufasa </v-btn>
         </v-container>
       </v-card-text>
       <v-card-actions>
