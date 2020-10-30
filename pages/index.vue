@@ -110,7 +110,7 @@
 
           <v-btn
             id="AddRuleButton"
-            style="visibility: hidden"
+            v-if="!isHidden"
             @click="addRuleRow"
           >
             Add rule
@@ -171,6 +171,7 @@ export default {
     n: '',
     rule1: 'FF',
     rule2: 'F[-X][X]F[-X]+FX',
+    isHidden: true,
   }),
   methods: {
     generateTree() {
@@ -179,8 +180,8 @@ export default {
       this.canvas = c.getContext('2d')
 
       this.rules = []
-      this.rules[0] = ['F', document.getElementById('rule1').value]
-      this.rules[1] = ['X', document.getElementById('rule2').value]
+      this.rules[0] = ['F', this.rule1]
+      this.rules[1] = ['X', this.rule2]
 
       let numStochRules =
         document.getElementById('stochasticRules').children.length / 2
@@ -203,10 +204,12 @@ export default {
       clickHandler(this.model, this.angle, this.axiom, this.n, this.canvas, this.rules)
     },
     onChange(value) {
-      if (value === 'stochastic') {
-        document.getElementById('AddRuleButton').style.visibility = 'visible'
-      } else if (value === 'deterministic') {
-        document.getElementById('AddRuleButton').style.visibility = 'hidden'
+      console.log(this.model)
+      if (this.model === 'stochastic') {
+        console.log('inside if')
+        this.isHidden = false
+      } else if (this.model === 'deterministic') {
+        this.isHidden = true
         document.getElementById('stochasticRules').innerHTML = ''
       }
     },
@@ -243,8 +246,10 @@ export default {
       this.n = 3
       this.rule1 = "F-F+FF-F-F+F"
       this.rule2 = ""
-      this.forceRerender()
+      this.isHidden = true
+      document.getElementById('stochasticRules').innerHTML = ''
       this.generateTree()
+      this.forceRerender()
     },
     changeVars2() {
       this.model = 'deterministic'
@@ -253,8 +258,10 @@ export default {
       this.n = 3
       this.rule1 = "F+F--F+F"
       this.rule2 = ""
-      this.forceRerender()
+      this.isHidden = true
+      document.getElementById('stochasticRules').innerHTML = ''
       this.generateTree()
+      this.forceRerender()
     },
     mounted() {
       var c = document.getElementById('myCanvas')
