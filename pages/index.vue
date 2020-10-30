@@ -135,6 +135,22 @@
 </template>
 
 <style>
+/** Functions which connect and display the various web app funtionalitied 
+to user front end. Pos also fed in, also ctx is the canvas.
+     * generateTree     Stores information to pass for drawing the tree that the user fills in (not example tree)
+     * getElementById   Stores the variable by ID for various user selections
+     * clickHandler     Takes the stored variables and displays its outcome on user front
+     * onChange         Takes the changes and pases them
+     * methods          Takes in order of rules, then pases these parameters to create tree  
+     * addRuleRow       Takes in the rule and notes it if stochastic it saves in stochasticRules
+     * changeVars       Plots various example trees otions 1-4
+     * mounted          Saves and passes the information to a HTML Canvas
+     * forceRerender    This renders text areas
+
+
+
+**/
+
 #myCanvas {
   border: 1px solid grey;
 }
