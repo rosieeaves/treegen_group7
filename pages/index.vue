@@ -119,7 +119,6 @@
           <v-btn id="exm4" @click="changeVars4"> Mufasa </v-btn>
 
           <v-btn id="ex3" @click="changeVars3"> Example Tree </v-btn>
-
         </v-container>
       </v-card-text>
       <v-card-actions>
