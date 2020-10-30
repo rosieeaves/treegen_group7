@@ -32,7 +32,7 @@
 
         <v-container fluid>
           <v-select
-            v-model='model'
+            v-model="model"
             id="modelType"
             :items="modelType"
             label="Select your model type"
@@ -44,7 +44,7 @@
 
           <v-textarea
             id="angle"
-            v-model='angle'
+            v-model="angle"
             label="Branching angle"
             auto-grow
             outlined
@@ -55,7 +55,7 @@
 
           <v-textarea
             id="axiom"
-            v-model='axiom'
+            v-model="axiom"
             label="Starting string"
             auto-grow
             outlined
@@ -66,7 +66,7 @@
 
           <v-textarea
             id="n"
-            v-model='n'
+            v-model="n"
             label="No. of Iterations"
             auto-grow
             outlined
@@ -78,7 +78,7 @@
           <span class="ruleInput">F = </span>
 
           <v-textarea
-            v-model='rule1'
+            v-model="rule1"
             id="rule1"
             label="Rule 1"
             auto-grow
@@ -92,7 +92,7 @@
           <span class="ruleInput">X = </span>
 
           <v-textarea
-            v-model='rule2'
+            v-model="rule2"
             id="rule2"
             label="Rule 2"
             auto-grow
@@ -108,28 +108,13 @@
           <br />
           <v-spacer />
 
-          <v-btn
-            id="AddRuleButton"
-            v-if="!isHidden"
-            @click="addRuleRow"
-          >
+          <v-btn id="AddRuleButton" v-if="!isHidden" @click="addRuleRow">
             Add rule
           </v-btn>
 
-        <v-btn
-            id="ex1"
-            @click="changeVars1"
-          >
-            Example Curve 1
-          </v-btn>
-        
-        <v-btn
-            id="ex2"
-            @click="changeVars2"
-          >
-            Example Curve 2
-          </v-btn>
+          <v-btn id="ex1" @click="changeVars1"> Example Curve 1 </v-btn>
 
+          <v-btn id="ex2" @click="changeVars2"> Example Curve 2 </v-btn>
         </v-container>
       </v-card-text>
       <v-card-actions>
@@ -175,7 +160,6 @@ export default {
   }),
   methods: {
     generateTree() {
-
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
 
@@ -201,7 +185,14 @@ export default {
       }
       console.log(this.rules)
 
-      clickHandler(this.model, this.angle, this.axiom, this.n, this.canvas, this.rules)
+      clickHandler(
+        this.model,
+        this.angle,
+        this.axiom,
+        this.n,
+        this.canvas,
+        this.rules
+      )
     },
     onChange(value) {
       console.log(this.model)
@@ -242,10 +233,10 @@ export default {
     changeVars1() {
       this.model = 'deterministic'
       this.angle = 90
-      this.axiom = "F-F-F-F-"
+      this.axiom = 'F-F-F-F-'
       this.n = 3
-      this.rule1 = "F-F+FF-F-F+F"
-      this.rule2 = ""
+      this.rule1 = 'F-F+FF-F-F+F'
+      this.rule2 = ''
       this.isHidden = true
       document.getElementById('stochasticRules').innerHTML = ''
       this.generateTree()
@@ -254,10 +245,10 @@ export default {
     changeVars2() {
       this.model = 'deterministic'
       this.angle = 60
-      this.axiom = "F+F+F+F+F+F"
+      this.axiom = 'F+F+F+F+F+F'
       this.n = 3
-      this.rule1 = "F+F--F+F"
-      this.rule2 = ""
+      this.rule1 = 'F+F--F+F'
+      this.rule2 = ''
       this.isHidden = true
       document.getElementById('stochasticRules').innerHTML = ''
       this.generateTree()
@@ -268,7 +259,7 @@ export default {
       this.canvas = c.getContext('2d')
     },
     forceRerender() {
-      this.componentKey += 1;
+      this.componentKey += 1
     },
   },
 }
