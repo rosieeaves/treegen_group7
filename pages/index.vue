@@ -96,14 +96,16 @@
             ></v-textarea>
 
             <div id="stochasticRules"></div>
+            <br/>
+            <v-spacer />
 
-            <button
+            <v-btn
               id="AddRuleButton"
               style="visibility: hidden"
               @click="addRuleRow"
             >
               Add rule
-            </button>
+            </v-btn>
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -188,17 +190,18 @@ export default {
         document.getElementById('stochasticRules').children.length + 1 / 2
 
       let ruleInput = document.createElement('select')
+      ruleInput.style = 'color:white; font-size:12';
 
       let F = document.createElement('option')
       F.value = 'F'
       F.innerHTML = 'F ='
-      F.style = 'color: white;'
+      F.style = 'color:white; font-size:12';
       ruleInput.appendChild(F)
 
       let X = document.createElement('option')
       X.value = 'X ='
       X.innerHTML = 'X ='
-      X.style = 'color: white;'
+      X.style = 'color:white; font-size:12';
       ruleInput.appendChild(X)
 
       ruleInput.id = 'rule' + ruleNum
@@ -207,6 +210,7 @@ export default {
       let ruleOutput = document.createElement('input')
       ruleOutput.id = 'rule' + ruleNum
       ruleOutput.className = 'inline-div'
+      ruleOutput.style = 'color:white; font-size:16; border: 1px solid grey';
       document.getElementById('stochasticRules').appendChild(ruleOutput)
     },
     mounted() {
