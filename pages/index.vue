@@ -180,9 +180,11 @@ export default {
   }),
   methods: {
     generateTree() {
+      /* Stores information to pass for drawing the tree that the user fills in (not example tree) */
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
 
+      // Set up rules array
       this.rules = []
       this.rules[0] = ['F', this.rule1]
       this.rules[1] = ['X', this.rule2]
@@ -203,7 +205,6 @@ export default {
           ]
         }
       }
-      console.log(this.rules)
 
       clickHandler(
         this.model,
@@ -215,9 +216,8 @@ export default {
       )
     },
     onChange(value) {
-      console.log(this.model)
+      /* Shows add rule button if stochastic is selected. */
       if (this.model === 'stochastic') {
-        console.log('inside if')
         this.isHidden = false
       } else if (this.model === 'deterministic') {
         this.isHidden = true
@@ -225,6 +225,7 @@ export default {
       }
     },
     addRuleRow() {
+      /* Creates a new ro for a stochastic rule to be added. */
       let ruleNum =
         document.getElementById('stochasticRules').children.length + 1 / 2
 
@@ -251,6 +252,7 @@ export default {
       document.getElementById('stochasticRules').appendChild(ruleOutput)
     },
     changeVars1() {
+      /* Plots an example tree*/
       this.model = 'deterministic'
       this.angle = 60
       this.axiom = 'F+F+F+F+F+F'
@@ -263,6 +265,7 @@ export default {
       this.forceRerender()
     },
     changeVars2() {
+      /* Plots an example tree*/
       this.model = 'deterministic'
       this.angle = 60
       this.axiom = 'FX+FX+FX'
@@ -275,6 +278,7 @@ export default {
       this.forceRerender()
     },
     changeVars4() {
+      /* Plots an example tree*/
       this.model = 'deterministic'
       this.angle = 45
       this.axiom = 'F+F+F'
@@ -287,6 +291,7 @@ export default {
       this.forceRerender()
     },
     changeVars3() {
+      /* Plots an example tree*/
       this.model = 'deterministic'
       this.angle = 13
       this.axiom = 'X'
