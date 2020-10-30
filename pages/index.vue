@@ -196,7 +196,7 @@ export default {
       ruleInput.appendChild(F)
 
       let X = document.createElement('option')
-      X.value = 'X ='
+      X.value = 'X'
       X.innerHTML = 'X ='
       X.style = 'color: white;'
       ruleInput.appendChild(X)
