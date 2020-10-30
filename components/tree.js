@@ -125,7 +125,6 @@ export default class Tree {
     let len = 1 // length of steps
     for (const char of string) {
       if (char === 'F') {
-
         let theta = (-Math.PI / 180) * ang
         x = x + len * Math.cos(theta)
         y = y + len * Math.sin(theta)
@@ -133,7 +132,6 @@ export default class Tree {
         xmin = Math.min(x, xmin)
         ymax = Math.max(y, ymax)
         ymin = Math.min(y, ymin)
-
       } else if (char === '[') {
         xlist.push([x, y, ang])
       } else if (char === ']') {
@@ -148,7 +146,6 @@ export default class Tree {
     }
 
     return [Math.abs(xmax - xmin), Math.abs(ymax - ymin), xmin, ymax]
-
   }
 
   drawTree(string, ctx, iter) {

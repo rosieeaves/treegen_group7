@@ -2,7 +2,14 @@ import Tree from '~/components/tree'
 
 /* This will check for erros in the user input, and if there are none
 create a tree and give it the necessary information*/
-export default function clickHandler(modeltype, angle, axiom, iter, ctx, rules) {
+export default function clickHandler(
+  modeltype,
+  angle,
+  axiom,
+  iter,
+  ctx,
+  rules
+) {
   // Check for valid angle, checking for self-equality is checking for NaN
   let valid = true
   angle = parseFloat(angle)
@@ -38,9 +45,8 @@ export default function clickHandler(modeltype, angle, axiom, iter, ctx, rules) 
     ctx.stroke()
     let tree = new Tree(modeltype, angle, axiom, iter)
 
-
-    for (let i=0; i<rules.length; i++) {
-      tree.addRule(rules[i][0],rules[i][1])
+    for (let i = 0; i < rules.length; i++) {
+      tree.addRule(rules[i][0], rules[i][1])
     }
 
     tree.generate(ctx, iter)
