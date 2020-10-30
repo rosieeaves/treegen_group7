@@ -78,13 +78,13 @@
           <span class="ruleInput">F = </span>
 
           <v-textarea
+            v-model='rule1'
             id="rule1"
             label="Rule 1"
             auto-grow
             outlined
             rows="1"
             row-height="15"
-            value='FF'
             :key="componentKey"
             cols="49"
           ></v-textarea>
@@ -92,6 +92,7 @@
           <span class="ruleInput">X = </span>
 
           <v-textarea
+            v-model='rule2'
             id="rule2"
             label="Rule 2"
             auto-grow
@@ -100,7 +101,6 @@
             row-height="15"
             cols="49"
             class="ruleOutput"
-            value='F[-X][X]F[-X]+FX'
             :key="componentKey"
           ></v-textarea>
 
@@ -161,22 +161,19 @@ import Tree from '~/components/tree'
 import clickHandler from './index'
 
 export default {
-  model: '',
-  angle: 0,
-  axiom: '',
-  n: 0,
-  rule1: 'FF',
-  rule2: 'F[-X][X]F[-X]+FX',
   canvas: null,
   data: () => ({
     modelType: ['deterministic', 'stochastic'],
     componentKey: 0,
+    model: '',
+    angle: '',
+    axiom: '',
+    n: '',
+    rule1: 'FF',
+    rule2: 'F[-X][X]F[-X]+FX',
   }),
   methods: {
     generateTree() {
-      //this.n2 = document.getElementById('angle').value
-      //this.n3 = document.getElementById('axiom').value
-      //this.n4 = document.getElementById('n').value
 
       var c = document.getElementById('myCanvas')
       this.canvas = c.getContext('2d')
@@ -245,6 +242,7 @@ export default {
       this.axiom = "F-F-F-F-"
       this.n = 3
       this.rule1 = "F-F+FF-F-F+F"
+      this.rule2 = ""
       this.forceRerender()
       this.generateTree()
     },
@@ -254,6 +252,7 @@ export default {
       this.axiom = "F+F+F+F+F+F"
       this.n = 3
       this.rule1 = "F+F--F+F"
+      this.rule2 = ""
       this.forceRerender()
       this.generateTree()
     },
