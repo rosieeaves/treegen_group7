@@ -112,9 +112,11 @@
             Add rule
           </v-btn>
 
-          <v-btn id="ex1" @click="changeVars1"> Example Curve 1 </v-btn>
+          <v-btn id="ex2" @click="changeVars1"> Kosh-Style Snowflake </v-btn>
 
-          <v-btn id="ex2" @click="changeVars2"> Example Curve 2 </v-btn>
+          <v-btn id="ex3" @click="changeVars2"> MC Escher </v-btn>
+
+          <v-btn id="ex4" @click="changeVars3"> Mufasa </v-btn>
         </v-container>
       </v-card-text>
       <v-card-actions>
@@ -232,10 +234,10 @@ export default {
     },
     changeVars1() {
       this.model = 'deterministic'
-      this.angle = 90
-      this.axiom = 'F-F-F-F-'
+      this.angle = 60
+      this.axiom = 'F+F+F+F+F+F'
       this.n = 3
-      this.rule1 = 'F-F+FF-F-F+F'
+      this.rule1 = 'F+F--F+F'
       this.rule2 = ''
       this.isHidden = true
       document.getElementById('stochasticRules').innerHTML = ''
@@ -245,9 +247,21 @@ export default {
     changeVars2() {
       this.model = 'deterministic'
       this.angle = 60
-      this.axiom = 'F+F+F+F+F+F'
+      this.axiom = 'FX+FX+FX'
       this.n = 3
-      this.rule1 = 'F+F--F+F'
+      this.rule1 = 'F'
+      this.rule2 = 'FX+FX+FX+'
+      this.isHidden = true
+      document.getElementById('stochasticRules').innerHTML = ''
+      this.generateTree()
+      this.forceRerender()
+    },
+    changeVars3() {
+      this.model = 'deterministic'
+      this.angle = 45
+      this.axiom = 'F+F+F'
+      this.n = 6
+      this.rule1 = '+F+F+F'
       this.rule2 = ''
       this.isHidden = true
       document.getElementById('stochasticRules').innerHTML = ''
